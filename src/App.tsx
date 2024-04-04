@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import ListGames from './components/ListGames';
 
 import './App.css'
 
@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div>
-      <h1>Hello World</h1>
+      <ListGames />
     </div>
   )
 }
