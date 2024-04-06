@@ -3,10 +3,10 @@ import Axios from "axios";
 
 function ListGames () {
 
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState<any[]>([]);
 
   const fetchGames = async () => {
-    const { data } = await Axios.get("https://v3.football.api-sports.io/fixtures?league=94&season=2023&date=2024-03-30", {
+    const { data } = await Axios.get("https://v3.football.api-sports.io/fixtures?league=94&season=2023&date=2024-04-06", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "v3.football.api-sports.io",
@@ -16,7 +16,9 @@ function ListGames () {
 
   const games = data["response"]
   setGames(games);
-  console.log(games['1'].teams.home.name);
+  var index = 1
+  console.log(games[index].teams.home.name);
+  console.log(games)
 
   };
 
@@ -28,9 +30,9 @@ function ListGames () {
   return <div>
     <ul className="list-group">
       <p>games</p>
-      {games.map((game) => (
-        <li  className="list-group-item">
-          Casa: {game.fixtures}
+      {games.map((game, index: number) => (
+        <li key={game.teams.id} className="list-group-item">
+          Casa: {(game.teams.home.name)} | Fora: {game.teams.away.name}
         </li>
       ))};  
     </ul>
